@@ -8,11 +8,14 @@ const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256");
 const encBase64 = require("crypto-js/enc-base64");
 
+// Import du package cloudinary
+const cloudinary = require("cloudinary").v2;
+
 // Import des models User et Offer
 const User = require("../models/User");
 const Offer = require("../models/Offer");
 
-// SIGN UP USER (AJOUTER VALIDITÉ EMAIL + PHONE)
+// SIGN UP USER
 
 router.post("/user/signup", async (req, res) => {
   try {

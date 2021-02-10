@@ -6,6 +6,9 @@ const router = express.Router();
 // Import du middleware isAuthenticated
 const isAuthenticated = require("../middleware/isAuthenticated");
 
+// Import du package cloudinary
+const cloudinary = require("cloudinary").v2;
+
 // Import des models User et Offer
 const Offer = require("../models/Offer");
 const User = require("../models/User");
