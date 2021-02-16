@@ -5,12 +5,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
+const paymentRoutes = require("./routes/payment");
 
 const app = express();
 app.use(formidable());
 app.use(cors());
 app.use(userRoutes);
 app.use(offerRoutes);
+app.use(paymentRoutes);
 
 // Initialiser la BDD
 mongoose.connect(process.env.MONGODB_URI, {
