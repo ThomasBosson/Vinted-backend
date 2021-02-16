@@ -1,12 +1,12 @@
 const express = require("express");
-// const formidable = require("express-formidable");
+const formidable = require("express-formidable");
 const router = express.Router();
-// const cors = require("cors");
+const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_KEY_SECRET);
 
-// const app = express();
-// app.use(formidable());
-// app.use(cors());
+const app = express();
+app.use(formidable());
+app.use(cors());
 
 // PAYMENT STRIPE
 
@@ -16,15 +16,13 @@ router.post("/payment", async (req, res) => {
 
   // Create transaction (request to Stripe)
   const response = await stripe.charges.create({
-    amount: req.fields.price * 100,
+    amount: 20000, // req.fields.price * 100,
     currency: "eur",
-    description: req.fields.description,
+    description: "description du produit acheté", //req.fields.description
     source: stripeToken,
   });
   console.log(response);
-  if (response.status === "succeeded") {
-    res.status.json("Paiement validé !");
-  }
+  res.json("Paiement validé");
 });
 
 module.exports = router;
