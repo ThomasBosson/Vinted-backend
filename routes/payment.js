@@ -13,12 +13,14 @@ app.use(cors());
 router.post("/payment", async (req, res) => {
   // Réception du stripeToken
   const stripeToken = req.fields.stripeToken;
+  const price = req.fields.price;
+  const title = req.fields.title;
 
   // Create transaction (request to Stripe)
   const response = await stripe.charges.create({
-    amount: 20000, // req.fields.price * 100,
+    title: title,
+    amount: price * 100,
     currency: "eur",
-    description: "description du produit acheté", //req.fields.description
     source: stripeToken,
   });
   console.log(response);
