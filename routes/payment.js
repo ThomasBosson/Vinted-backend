@@ -1,12 +1,6 @@
 const express = require("express");
-const formidable = require("express-formidable");
 const router = express.Router();
-const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_KEY_SECRET);
-
-const app = express();
-app.use(formidable());
-app.use(cors());
 
 // PAYMENT STRIPE
 
@@ -26,7 +20,7 @@ router.post("/payment", async (req, res) => {
     });
     console.log(response);
     if (response.status === "succeeded") {
-      res.status(200).json({ message: "Payment succeeded" });
+      res.status(200).json({ message: "Payment validé" });
     }
   } catch (error) {
     res.status(400).json({ error: error.message });
