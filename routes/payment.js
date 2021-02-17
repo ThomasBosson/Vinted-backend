@@ -8,7 +8,7 @@ router.post("/payment", async (req, res) => {
   try {
     // Réception du stripeToken
     const stripeToken = req.fields.stripeToken;
-    const price = req.fields.total;
+    const price = req.fields.amount;
     const title = req.fields.title;
 
     // Create transaction (request to Stripe)
